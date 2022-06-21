@@ -1,9 +1,10 @@
+#定义每个数字所需的灯管数目 0要6个，1要2个，2要5个...
 StrickPreNumber=[6,2,5,5,4,5,6,3,7,6]
 TargetTimeNumber=2
 MaxNumber=0
 AllTimes=0
 
-
+#开始获得用户数据所需要的灯管(火柴)数目
 def GetTargetNumber():
     global TargetTimeNumber
     try:
@@ -15,6 +16,7 @@ def GetTargetNumber():
         print("参数非法")
         GetTargetNumber()
 
+#开始获得用户数据数据区间
 def GetMaxNumber():
     global MaxNumber
     try:
@@ -25,30 +27,32 @@ def GetMaxNumber():
     if MaxNumber<=0:
         print("参数非法")
         GetMaxNumber()
-
-def JugeThisStrick(Number):#55642
+        
+#进去一个数字，返回这个数字所需的灯管数目 如进去的数据为111则返回6
+def JugeThisStrick(Number):
     if Number==0:
         return 6
     global StrickPreNumber
     list1=GetPreNBr(Number)
     ListLen=len(list1)-1
-    print(ListLen)
+    #print(ListLen)
     Total=0
     while ListLen>=0:
         Total=Total+StrickPreNumber[list1[ListLen]]
         ListLen=ListLen-1
     return Total
 
+#给JugeThisStrick函数用的，把多个数字拆分为单个数字如输入进的数据为111则返回[1,1,1]
 def GetPreNBr(value):
     result=[]
     while value:
         result.append(value%10)
         value=value//10
     result.reverse()
-    print(result)
+    #print(result)
     return result
 
-
+#处理到哪了
 def Update():
     global MaxNumber
     global TargetTimeNumber
@@ -63,7 +67,8 @@ def Update():
             AllTimes=AllTimes+1
         this=this+1
 
-print("Designed by World Functions")
+#程序开始
+print("Designed by NortzWolfy")
 print("您可使用Ctrl+C强制终止进程")
 while True:
     AllTimes=0
